@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: long-presync-then-echo-cron-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: long-presync-then-echo-cron-app
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: default
+  source:
+    repoURL: https://github.com/danxmoran/argo-cd-reproducers
+    path: long-presync-then-echo-cron
+    targetRevision: HEAD
+    helm:
+      values: >
+        input: 'Hello world!'
