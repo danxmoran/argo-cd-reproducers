@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: long-presync-then-echo-cron-app
+  name: sleep-then-test-app
   namespace: argocd
   labels:
-    app.kubernetes.io/name: long-presync-then-echo-cron-app
+    app.kubernetes.io/name: sleep-then-test-app
 spec:
   project: default
   destination:
@@ -12,7 +12,7 @@ spec:
     namespace: default
   source:
     repoURL: https://github.com/danxmoran/argo-cd-reproducers
-    path: long-presync-then-echo-cron
+    path: sleep-then-test
     targetRevision: HEAD
     helm:
       values: >
