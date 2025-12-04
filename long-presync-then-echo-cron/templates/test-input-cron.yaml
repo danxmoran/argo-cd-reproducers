@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: echo-cron
+  name: test-input-cron
   labels:
-    app.kubernetes.io/name: echo-cron
+    app.kubernetes.io/name: test-input-cron
 spec:
   schedule: "*/5 * * * *" # Every 5 minutes
   concurrencyPolicy: Forbid
@@ -12,15 +12,15 @@ spec:
   jobTemplate:
     metadata:
       labels:
-        app.kubernetes.io/name: echo-cron
+        app.kubernetes.io/name: test-input-cron
     spec:
       template:
         metadata:
           labels:
-            app.kubernetes.io/name: echo-cron
+            app.kubernetes.io/name: test-input-cron
         spec:
           restartPolicy: Never
           containers:
-            - name: echo
+            - name: tester
               image: alpine:3.23.0
-              command: [echo, '{{ .Values.input }}']
+              command: [test, '{{ .Values.input }}', =, original]
