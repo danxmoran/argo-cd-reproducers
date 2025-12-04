@@ -17,4 +17,4 @@ spec:
       containers:
         - name: sleeper
           image: alpine:3.23.0
-          args: [-c, 'sleep 300 && echo {{ .Values.input }}']
+          command: [sh, -c, 'sleep 300 && echo {{ .Values.input }}']
